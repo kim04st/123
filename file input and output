@@ -1,0 +1,75 @@
+파일 입력
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student {
+  char n[20];
+  int kor;
+  int eng;
+};
+
+int main() {
+  struct Student st[3] = {
+    {"Kim", 100, 100},
+    {"Shim", 88, 88},
+    {"Park", 72, 96}
+  };
+
+  FILE* f;
+  f = fopen("sj.txt", "w");
+
+  for (int i = 0; i < 3; i++) {
+    fprintf(f, "%s %d %d\n", st[i].n, st[i].kor, st[i].eng);
+}
+
+  fclose(f);
+
+  printf("성공적으로 저장되었습니다.");
+
+  return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+파일 출력
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student {
+  char n[20];
+  int kor;
+  int eng;
+};
+
+int main() {
+  struct Student st[3];
+
+  FILE* f;
+  f = fopen("sj.txt", "r");
+
+  for (int i = 0; i < 3; i++) {
+    fscanf(f, "%s %d %d", st[i].n, &st[i].kor, &st[i].eng);
+  }
+
+  fclose(f);
+
+  for (int i = 0; i < 3; i++) {
+    printf( "%s %d %d\n", st[i].n, st[i].kor, st[i].eng);
+  }
+
+  return 0;
+}
+
+소감
+김승태 : 값을 입력하여 저장하고 출력하는 프로그램은 1학기때도 하였지만 구조체를 활용하여 프로그램을 작성했을 때 코드의 길이가 줄어들고 코드의 가독성 또한 훨씬 개선되는 것을 알게 되었습니다.
+프로그래밍 언어는 배우면 배울수록 같은 프로그램이더라도 점점 더 나은 프로그램을 작성할 수 있고, 프로그램을 개발할 때 여러가지 방법으로 접근해 보았을 때 더 나은 프로그램이 개발 될 수 있겠다는 생각을 했습니다.
+
+김민성 : 저번 학기에서 배운 파일입출력 함수에 구조체를 추가한 더 발전된 과제였었던 것 같습니다.
+확실히 구조체를 사용하니 번거롭게 변수를 선언할 필요없이 배열로 묶어놓아서 프로그래밍하는데 저번보다 더 편했던것 같습니다.
+
+현준 : 언어에서 구조체와 배열을 이용해서 성적처리프로그램을 만들어 보니 프로그래밍에 대해 자신감이 생겼다.
+그치만 만드는 도중에 어려움이 있었지만 팀원들의 도움을 받아 어려운 부분을 빨리 해결 할 수 있어서 좋았다.
