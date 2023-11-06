@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// 링크드 리스트 노드 구조체 정의
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// 새로운 노드를 생성하는 함수
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// 링크드 리스트에 노드를 추가하는 함수
+void appendNode(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        struct Node* current = *head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
+
+// 링크드 리스트의 내용을 출력하는 함수
+void printList(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+// 링크드 리스트 메모리 해제 함수
+void freeList(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        struct Node* temp = current;
+        current = current->next;
+        free(temp);
+    }
+}
+
+int main() {
+    struct Node* myList = NULL;
+
+    // 링크드 리스트에 데이터 추가
+    appendNode(&myList, 5);
+    appendNode(&myList, 10);
+    appendNode(&myList, 15);
+
+    // 링크드 리스트 출력
+    printf("링크드 리스트: ");
+    printList(myList);
+
+    // 링크드 리스트 메모리 해제
+    freeList(myList);
+
+    return 0;
+}
